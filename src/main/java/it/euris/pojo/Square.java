@@ -1,6 +1,6 @@
 package it.euris.pojo;
 
-public class Square {
+public class Square implements Shape{
 
     private final double length;
 
@@ -10,5 +10,11 @@ public class Square {
 
     public double getLength() {
         return this.length;
+    }
+
+
+    @Override
+    public double calculateArea() {
+        return Math.pow(this.length,2);
     }
 }

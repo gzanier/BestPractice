@@ -1,22 +1,29 @@
 package it.euris.service;
 
-import it.euris.pojo.Circle;
-import it.euris.pojo.Square;
+import it.euris.pojo.Shape;
 
 import java.util.Collection;
-import java.util.Objects;
 
 public class AreaCalculator {
 
-  protected Collection<Object> shapes;
+    protected Collection<Shape> shapes;
 
-  public AreaCalculator(Collection<Object> shapes) {
-    this.shapes = shapes;
-  }
+    public AreaCalculator(Collection<Shape> shapes) {
+        this.shapes = shapes;
+    }
 
-  public double sum() {
-    double result = 0;
-    for (Object shape : shapes) {
+    public double sum() {
+        return shapes      // [Circle(),---] shapes.lenght ---> x
+                .stream() //{Circle(5) ..... }non hanno lunghezza
+                .map(Shape::calculateArea) //shape -> shape.calculateArea())  //map passa da shape a double {10d, 100d...}
+                .reduce(0d,Double::sum); //.reduce(0d, (x, y) -> x + y); // il 1 valore è l'accumulatore è l'identità dell'operazione
+        // se ho una moltiplicazione dopo sarà 1
+        //double result = 0;
+
+        //for (Shape shape: shapes) {
+        // result += shape.calculateArea();
+
+    /*for (Object shape : shapes) {
       if (shape instanceof Square) {
         double squareLength = ((Square) shape).getLength();
         result += Math.pow(squareLength, 2);
@@ -25,12 +32,13 @@ public class AreaCalculator {
         result += Math.PI * Math.pow(circleRadius, 2);
       } else {
         throw new RuntimeException("Unrecognized shape, aborting sum...");
-      }
-    }
-    return result;
-  }
+      }*/
+        //}
+        //return result;
 
-  public String output() {
+    }
+
+  /*public String output() {
     return "\tLa somma delle aree è: " + sum();
-  }
+  }*/
 }
