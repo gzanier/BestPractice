@@ -1,2 +1,2 @@
-# BestPractive
+# BestPractice
 Java Academy
